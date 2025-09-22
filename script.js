@@ -1,32 +1,49 @@
-document.getElementById('book-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent the form from submitting
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('book-form');
+    const bookList = document.getElementById('book-list');
 
-            // Get form values
-            const title = document.getElementById('title').value;
-            const author = document.getElementById('author').value;
-            const isbn = document.getElementById('isbn').value;
+    // Event listener for adding a book
+    form.addEventListener('submit', (e) => {
+        // Prevent actual form submission
+        e.preventDefault();
 
-            // Create new table row
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${title}</td>
-                <td>${author}</td>
-                <td>${isbn}</td>
-                <td><button class="delete">Clear</button></td>
-            `;
+        // Get form values
+        const title = document.getElementById('title').value;
+        const author = document.getElementById('author').value;
+        const isbn = document.getElementById('isbn').value;
 
-            // Append row to the book list
-            document.getElementById('book-list').appendChild(row);
+        // Basic validation
+        if (title === '' || author === '' || isbn === '') {
+            alert('Please fill in all fields');
+            return;
+        }
 
-            // Clear the form fields
-            document.getElementById('title').value = '';
-            document.getElementById('author').value = '';
-            document.getElementById('isbn').value = '';
-        });
+        // Create new table row element
+        const row = document.createElement('tr');
 
-        // Add event listener for delete button clicks
-        document.getElementById('book-list').addEventListener('click', function(e) {
-            if (e.target.classList.contains('delete')) {
-                e.target.closest('tr').remove(); // Remove the entire row
-            }
-        });
+        // Populate the row with HTML for the book data
+        row.innerHTML = `
+            <td>${title}</td>
+            <td>${author}</td>
+            <td>${isbn}</td>
+            <td><button class="delete">Clear</button></td>
+        `;
+
+        // Append the new row to the table body
+        bookList.appendChild(row);
+
+        // Clear the form fields
+        document.getElementById('title').value = '';
+        document.getElementById('author').value = '';
+        document.getElementById('isbn').value = '';
+    });
+
+    // Event listener for deleting a book
+    bookList.addEventListener('click', (e) => {
+        // Check if the clicked element has the 'delete' class
+        if (e.target.classList.contains('delete')) {
+            // Remove the entire row (the parent of the button's parent)
+            e.target.closest('tr').remove();
+        }
+    });
+});
