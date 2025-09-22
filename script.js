@@ -2,7 +2,7 @@
 function my_submit()
 {
 
-const tbl=document.getElementById("tbl");
+const tbl=document.getElementById("book-list");
 const my_form=document.getElementById("myform");
 let cell1=document.getElementById("title").value;
 let cell2=document.getElementById("author").value;
