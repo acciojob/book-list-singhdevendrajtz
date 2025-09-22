@@ -1,36 +1,30 @@
-<!DOCTYPE html>
+<h1>MyBookList</h1>
 
-<html>
+    <form id="book-form">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" required>
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" required>
+        </div>
+        <div class="form-group">
+            <label for="isbn">ISBN#</label>
+            <input type="text" id="isbn" required>
+        </div>
+        <button type="submit" id="submit">Add Book</button>
+    </form>
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-	<!-- the entire body must be written by student -->
-	<h1>MyBookList</h1>
-	<div class="form-group" id="myform">
-		<label for="Title">Title</label><br>
-		<input type="text" id="title">
-		<br><br>
-		<label for="author">Author</label><br>
-		<input type="text" id="author"><br><br>
-		<label for="isbn">ISBN#</label><br>
-		<input type="text" id="isbn"><br><br>
-		<button type="submit" onclick="my_submit()" id="submit">Add Book</button>
-		<br><br><table class="table table-striped" id="book-list">
-			<tr>
-				<th>Title</td>
-				<td>Author</td>
-				<td>ISBN#</td>
-			
-			</tr>
-		</table>
-	</div>
-	
-    <script type="text/javascript" src="./script.js">
-</script>
-
-</body>
-
-</html>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN#</th>
+                <th></th> <!-- Empty column for the delete button -->
+            </tr>
+        </thead>
+        <tbody id="book-list">
+        </tbody>
+    </table>

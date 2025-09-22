@@ -1,30 +1,32 @@
+document.getElementById('book-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting
 
-function my_submit()
-{
+            // Get form values
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const isbn = document.getElementById('isbn').value;
 
-const tbl=document.getElementById("book-list");
-const my_form=document.getElementById("myform");
-let cell1=document.getElementById("title").value;
-let cell2=document.getElementById("author").value;
-let cell3=document.getElementById("isbn").value;
-const new_row=tbl.insertRow();
-const new_button=document.createElement('button');
-	new_button.textContent='x';
-	new_button.classList.add('action-button');
-	new_button.addEventListener('click',function(){
-		
-		if(tbl.rows.length>1 )
-		{
-			
-			tbl.deleteRow(-1);
-		}
-	})
-	const newcell1=new_row.insertCell()
-const newcell2=new_row.insertCell()
-const newcell3=new_row.insertCell()
-const newcell4=new_row.insertCell()
-newcell1.innerHTML=cell1;
-newcell2.innerHTML=cell2;
-newcell3.innerHTML=cell3;
-newcell4.appendChild(new_button);
-}
+            // Create new table row
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${title}</td>
+                <td>${author}</td>
+                <td>${isbn}</td>
+                <td><button class="delete">Clear</button></td>
+            `;
+
+            // Append row to the book list
+            document.getElementById('book-list').appendChild(row);
+
+            // Clear the form fields
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '';
+            document.getElementById('isbn').value = '';
+        });
+
+        // Add event listener for delete button clicks
+        document.getElementById('book-list').addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete')) {
+                e.target.closest('tr').remove(); // Remove the entire row
+            }
+        });
